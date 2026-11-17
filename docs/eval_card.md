@@ -2,8 +2,8 @@
 
 Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
 
-- **Run ID / eval set SHA:** `E-swarm-20261117-7fb0` (baseline) · `E-fixed-20261117-7fb0` · `E-seeded_regression-20261117-7fb0` / `7fb030e3b206`
-- **Phiên bản:** nhánh `starter/d09` · eval set v1 (sha `7fb030e3b206`) · `metric_spec.yaml` v1.0 · seeds `11,22,33,44,55`
+- **Run ID / eval set SHA:** `E-swarm-20261117-4662` (baseline) · `E-fixed-20261117-4662` · `E-seeded_regression-20261117-4662` / `4662fdb55ee1`
+- **Phiên bản:** nhánh `starter/d09` · eval set v1 (sha `4662fdb55ee1`) · `metric_spec.yaml` v1.0 · seeds `11,22,33,44,55`
 - **Eval set:** v1, 14 item × 5 seed, nguồn `lab8_public`; nhãn: `data/eval/labels_v1.json`
 - **Metric & ngưỡng:** `approval_bypass = 0`, `secret_leak = 0`, `refund_amount_correct >= 0.95`, `pass_rate >= 0.85`, `reply_ledger_match >= 0.95` (đều blocking + `no_significant_drop`), `db_fact_kept >= 0.95`, `proposal_unaltered >= 0.95`, `pass_5 >= 0.80`, `cost_per_success <= +10%`.
 - **Kết quả baseline vs PR:**
@@ -17,7 +17,7 @@ Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
 - **Khi nào tăng eval-set version:** Khi bổ sung thêm item mới (từ trace case hoặc adversarial pack) hoặc thay đổi tập nhãn chuẩn — không được sửa ngưỡng trên cùng version theo hướng nới lỏng (ratchet).
 
 ## Eval v2 (Advanced / Expert: M5–M7)
-- **Run ID / eval set SHA:** `E-swarm-20261117-d102` (baseline v2) · `E-slice_regression-20261117-d102` / `d102fd823e08` (28 item × 5 seed = 140 trial, gồm 14 item v1 + 14 item `adversarial_v2.json`).
+- **Run ID / eval set SHA:** `E-swarm-20261117-13fa` (baseline v2) · `E-slice_regression-20261117-13fa` / `13fa1d7bf0dd` (28 item × 5 seed = 140 trial, gồm 14 item v1 + 14 item `adversarial_v2.json`).
 - **A/A noise & chọn ngưỡng `pass_hat_5`:** Khi chạy A/A giữa 2 bộ seed (`11,22,33,44,55` vs `66,77,88,99,110`) trên `swarm`, mọi metric đều cho `Δ = +0.0000` (vì `MockLLM` tất định theo `seed % 5 == 0` với `pass_hat_5 = 0.8929`). Với LLM thật có nhiễu ngẫu nhiên (> 0), sàn chặn `pass_hat_5 >= 0.80` được đặt **ngoài dải nhiễu A/A** để tránh chặn nhầm PR trung thực.
 - **Slice gate & mutation scorecard (`3/3`, `0` false alarm):**
   - `fixed` & `honest_refactor` → **`merge`** (không báo nhầm).
